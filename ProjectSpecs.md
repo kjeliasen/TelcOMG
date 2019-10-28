@@ -14,9 +14,11 @@
 
 2. I will also need you to deliver to me a csv with the customer_id, probability of churn, and the prediction of churn (1=churn, 0=not_churn). 
 
-3. I also need 1-3 google slides (+ title) that illustrates how your model works, including the features being used, so that I can deliver this to the SLT when they come with questions about how these values were derived. **Please make sure you include how likely your model is to give a high probability of churn when churn doesn't occur, to give a low probability of churn when churn occurs, and to accurately predict churn.**
+3. I also need 1-3 google slides *(plus title)* that illustrates how your model works, including the features being used, so that I can deliver this to the SLT when they come with questions about how these values were derived. 
 
-<c>*(Note: Zach likes diagrams!)*</c>
+    **Please make sure you include how likely your model is to give a high probability of churn when churn doesn't occur, to give a low probability of churn when churn occurs, and to accurately predict churn.**
+
+    *(Note: Zach likes diagrams!)*
 
 4. I'll schedule some time to meet with you on Wednesday morning so that you can present to me your findings with you slides prepared.
 
@@ -37,7 +39,7 @@ In addition, you should not present numers in isolation. If your code outputs a 
 - a **google slide presentation** summarizing your model
 - a **`README.md`** file that contains a link to your google slides presentation, and instructions for how to use your python script(s)
 
-## Project Planning
+### Project Planning
 
 1. summary of project and goals
 
@@ -47,7 +49,7 @@ In addition, you should not present numers in isolation. If your code outputs a 
 
 4. clearly state your starting hypotheses (and add the testing of these to your task list)
 
-## Acquisition
+### Acquisition
 
 1. **`Acquire.py`**
     - Acquire data from the customers table from the telco_churn database on the codeup data science database server.
@@ -67,7 +69,7 @@ In addition, you should not present numers in isolation. If your code outputs a 
     - *creates dataframe object `describe_df` (summary statistics of all numeric variables) and prints contents to screen.*
     - *prints to screen the information about a DataFrame including the index dtype and column dtypes, non-null values and memory usage.*
 
-## Data Prep
+### Data Prep
 
 1. **`Prepare.py`**
     - split data to train/test
@@ -93,31 +95,11 @@ In addition, you should not present numers in isolation. If your code outputs a 
 **Removed**
 1. *Write a function, `df_value_counts(dataframe)`, that takes a dataframe as input and computes and returns the values by frequency for each column. The function should decide whether or not to bin the data for the value counts.*
 
-2. *Handle Missing Values*
-    - *Explore the data and see if there are any missing values.*
-        *Write a function that accepts a dataframe and returns the names of the columns that have missing values, and the percent of missing values in each column that has missing values.*
-    - *Document your takeaways. For each variable:*
-        - *should you remove the observations with a missing value for that variable?*
-        - *should you remove the variable altogether?*
-        - *is missing equivalent to 0 (or some other constant value) in the specific case of this variable?*
-        - *should you replace the missing values with a value it is most likely to represent (e.g. Are the missing values a result of data integrity issues and should be replaced by the most likely value?)*
-    - *Handle the missing values in the way you recommended above.*
-
 3. *Transform `churn` such that "yes" = 1 and "no" = 0*
-
-4. *Compute a new feature, `tenure_year`, that is a result of translating tenure from months to years.*
-
-5. *Figure out a way to capture the information contained in `phone_service` and `multiple_lines` into a single variable of dtype int. Write a function that will transform the data and place in a new column named `phone_id`.*
-
-6. *Figure out a way to capture the information contained in dependents and partner into a single variable of dtype int. Transform the data and place in a new column `household_type_id`.*
 
 7. *Figure out a way to capture the information contained in `streaming_tv` and `streaming_movies` into a single variable of dtype int. Transform the data and place in a new column `streaming_services`.*
 
 8. *Figure out a way to capture the information contained in `online_security` and `online_backup` into a single variable of dtype int. Transform the data and place in a new column `online_security_backup`.*
-
-9. *Split the data into train (70%) and test (30%) samples.*
-
-10. *Variable Encoding: encode the values in each non-numeric feature such that they are numeric.*
 
 11. *Numeric Scaling: scale the monthly_charges and total_charges data. Make sure that the parameters for scaling are learned from the training data set.*
 

@@ -115,9 +115,11 @@ def get_telco_data(splain=local_settings.splain, **kwargs):
     select
         cust.`customer_id`,
         cust.`gender`,
+        case when cust.`gender` = 'Male' then 1 else 0 end is_male,
         cust.`senior_citizen`,
         case when cust.`partner` = 'Yes' then 1 else 0 end partner,
         case when cust.`dependents` = 'Yes' then 1 else 0 end dependents,
+        case when cust.`partner` = 'Yes' or cust.`dependents` = 'Yes' then 1 else 0 end family,
         2 * case when cust.`partner` = 'Yes' then 1 else 0 end + case when cust.`dependents` = 'Yes' then 1 else 0 end partner_deps_id,
         concat(
             case when cust.`partner` = 'Yes' then 'Has ' else 'No ' end,
@@ -127,6 +129,8 @@ def get_telco_data(splain=local_settings.splain, **kwargs):
         cust.`tenure`,
         case when cust.`phone_service` = 'Yes' then 1 else 0 end phone_service,
         case when cust.`multiple_lines` = 'Yes' then 1 else 0 end multiple_lines,
+        case when cust.`phone_service` = 'Yes' then 1 else 0 end + case when cust.`multiple_lines` = 'Yes' then 1 else 0 end phone_service_id,
+        case when cust.`phone_service` = 'Yes' then case when cust.`multiple_lines` = 'Yes' then 'Multiple Lines' else 'Single Line' end else 'No Phone' end phone_service_type,
         cust.`internet_service_type_id`,
         ist.`internet_service_type`,
         case when cust.`internet_service_type_id` = 3 then 0 else 1 end internet_service,
@@ -134,10 +138,12 @@ def get_telco_data(splain=local_settings.splain, **kwargs):
         case when cust.`internet_service_type_id` = 2 then 1 else 0 end has_fiber,
         case when cust.`online_security` = 'Yes' then 1 else 0 end online_security,
         case when cust.`online_backup` = 'Yes' then 1 else 0 end online_backup,
+        case when cust.`online_security` = 'Yes' or cust.`online_backup` = 'Yes' then 1 else 0 end online_security_backup,
         case when cust.`device_protection` = 'Yes' then 1 else 0 end device_protection,
         case when cust.`tech_support` = 'Yes' then 1 else 0 end tech_support,
         case when cust.`streaming_tv` = 'Yes' then 1 else 0 end streaming_tv,
         case when cust.`streaming_movies` = 'Yes' then 1 else 0 end streaming_movies,
+        case when cust.`streaming_tv` = 'Yes' or `streaming_movies` = 'Yes' then 1 else 0 end streaming_services,
         cust.`contract_type_id`,
         ct.`contract_type`,
         case when cust.`contract_type_id` = 1 then 0 else 1 end on_contract,
@@ -148,6 +154,7 @@ def get_telco_data(splain=local_settings.splain, **kwargs):
         case when pt.`payment_type` like '%%auto%%' then 1 else 0 end auto_pay,
         cust.`monthly_charges`,
         case when cust.`total_charges` = '' then 0 else cast(cust.`total_charges` as decimal(11,2)) end total_charges,
+        ((cust.`monthly_charges` * cust.`tenure`) - case when cust.`tenure` = 0 then 0 else cast(cust.`total_charges` as decimal(11,2)) end) / cust.`monthly_charges` tenure_remainder,
         case when cust.`churn` = 'Yes' then 1 else 0 end churn
     from 
         customers cust

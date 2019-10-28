@@ -1,12 +1,12 @@
 # Classification Project
 
-**Why are our customers churning?**
+## Why are our customers churning?
 *Some questions I have include:*
 
-- *Could the month in which they signed up influence churn? i.e. if a cohort is identified by tenure, is there a cohort or cohorts who have a higher rate of churn than other cohorts? (Plot the rate of churn on a line chart where x is the tenure and y is the rate of churn (customers churned/total customers))* **(Definitely answer this question)**
+- *Could the month in which they signed up influence churn? i.e. if a cohort is identified by tenure, is there a cohort or cohorts who have a higher rate of churn than other cohorts?* (Plot the rate of churn on a line chart where x is the tenure and y is the rate of churn (customers churned/total customers))
 - *Are there features that indicate a higher propensity to churn? like type of internet service, type of phone service, online security and backup, senior citizens, paying more than x% of customers with the same services, etc.?*
-- *Is there a price threshold for specific services where the likelihood of churn increases once price for those services goes past that point? If so, what is that point for what service(s)?* **(Definitely answer this question)**
-- *If we looked at churn rate for month-to-month customers after the 12th month and that of 1-year contract customers after the 12th month, are those rates comparable?* **(Definitely answer this question)**
+- *Is there a price threshold for specific services where the likelihood of churn increases once price for those services goes past that point? If so, what is that point for what service(s)?*
+- *If we looked at churn rate for month-to-month customers after the 12th month and that of 1-year contract customers after the 12th month, are those rates comparable?*
 
 ## Deliverables:
 
@@ -30,14 +30,14 @@ In general, make sure you document your work. You don't need to explain what eve
 
 In addition, you should not present numers in isolation. If your code outputs a number, be sure you give some context to the number.
 
-### #Specific Deliverables:
+### Specific Deliverables:
 - a **jupyter notebook** where your work takes place
 - a **csv file** that predicts churn for each customer
 - **`acquire.py`**, **`prepare.py`**, **`model.py`** (you may decide to separate tasks into others, such as `preprocessing.py` or `features.py`)
 - a **google slide presentation** summarizing your model
 - a **`README.md`** file that contains a link to your google slides presentation, and instructions for how to use your python script(s)
 
-### Project Planning
+## Project Planning
 
 1. summary of project and goals
 
@@ -47,14 +47,14 @@ In addition, you should not present numers in isolation. If your code outputs a 
 
 4. clearly state your starting hypotheses (and add the testing of these to your task list)
 
-### Acquisition
+## Acquisition
 
-1. `Acquire.py`
+1. **`Acquire.py`**
     - Acquire data from the customers table from the telco_churn database on the codeup data science database server.
     - You will want to join some tables as part of your query.
     - This data should end up in a pandas data frame.
 
-2. Notebook
+2. **Notebook**
     - run `acquire.py`
     - summarize data (.info(), .describe(), .value_counts(), ...)
     - plot distributions of individual variables
@@ -67,9 +67,9 @@ In addition, you should not present numers in isolation. If your code outputs a 
     - *creates dataframe object `describe_df` (summary statistics of all numeric variables) and prints contents to screen.*
     - *prints to screen the information about a DataFrame including the index dtype and column dtypes, non-null values and memory usage.*
 
-### Data Prep
+## Data Prep
 
-1. `Prepare.py`
+1. **`Prepare.py`**
     - split data to train/test
     - Handle Missing Values
     - Handle erroneous data and/or outliers you wish to address
@@ -80,7 +80,7 @@ In addition, you should not present numers in isolation. If your code outputs a 
     - do the same using `dependents` and `partner`
     - other ways to merge variables, such as `streaming_tv` & `streaming_movies`, `online_security` & `online_backup`
 
-2. Notebook
+2. **Notebook**
     - Explore missing values and document takeaways/action plans for handling them.
         - should you remove the observations with a missing value for that variable? *(remove row)*
         - should you remove the variable altogether? *(remove column)*
@@ -125,13 +125,13 @@ In addition, you should not present numers in isolation. If your code outputs a 
 
 Answer the key questions, your hypotheses, and figure out the drivers of churn.
 
-1. Could the month in which they signed up influence churn? i.e. if a cohort is identified by tenure, is there a cohort or cohorts who have a higher rate of churn than other cohorts? (Plot the rate of churn on a line chart where x is the tenure and y is the rate of churn (customers churned/total customers)).
+1. Could the month in which they signed up influence churn? i.e. if a cohort is identified by tenure, is there a cohort or cohorts who have a higher rate of churn than other cohorts? (Plot the rate of churn on a line chart where x is the tenure and y is the rate of churn (customers churned/total customers)). **(Definitely answer this question)**
 
 2. Are there features that indicate a higher propensity to churn? like type of internet service, type of phone service, online security and backup, senior citizens, paying more than x% of customers with the same services, etc.?
 
-3. Is there a price threshold for specific services where the likelihood of churn increases once price for those services goes past that point? If so, what is that point for what service(s)?
+3. Is there a price threshold for specific services where the likelihood of churn increases once price for those services goes past that point? If so, what is that point for what service(s)? **(Definitely answer this question)**
 
-4. If we looked at churn rate for month-to-month customers after the 12th month and that of 1-year contract customers after the 12th month, are those rates comparable?
+4. If we looked at churn rate for month-to-month customers after the 12th month and that of 1-year contract customers after the 12th month, are those rates comparable? **(Definitely answer this question)**
 
 5. Controlling for services (`phone_id`, `internet_service_type_id`, `online_security_backup`, `device_protection`, `tech_support`, and `contract_type_id`), is the mean monthly_charges of those who have churned significantly different from that of those who have not churned? (Use a t-test to answer this.)
 

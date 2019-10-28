@@ -8,7 +8,7 @@
 - *Is there a price threshold for specific services where the likelihood of churn increases once price for those services goes past that point? If so, what is that point for what service(s)?* **(Definitely answer this question)**
 - *If we looked at churn rate for month-to-month customers after the 12th month and that of 1-year contract customers after the 12th month, are those rates comparable?* **(Definitely answer this question)**
 
-## #Specific Deliverables:
+## Specific Deliverables:
 - a **jupyter notebook** where your work takes place
 - a **csv file** that predicts churn for each customer
 - **`acquire.py`**, **`prepare.py`**, **`model.py`** (you may decide to separate tasks into others, such as `preprocessing.py` or `features.py`)

@@ -1,5 +1,7 @@
 import time
+import datetime
 
+from datetime import datetime
 # local_settings = {}
 # local_settings = {'DEBUG': False, 'ARGS': False, 'KWARGS': False, 'SPLAIN': False, 'TOPX': 5, 'MAXCOLS': 10}
 
@@ -76,3 +78,6 @@ def frame_splain(df, title='DATAFRAME', *args, topx=local_settings.topx, maxcols
             print(df.head(max_x), '\n')
 
 
+@timeargsifdebug
+def get_date_time_code(datetime=datetime.now(), in_format='%Y%d%m%H%M'):
+    return datetime.strftime(in_format)

@@ -297,7 +297,7 @@ def df_join_xy(X, y):
 
 ### pairplot ##################################################################
 @timeifdebug
-def pairplot_train(dataframe, show_now=True):
+def pairplot_train(dataframe, show_now=True, **kwargs):
     '''
     FUNCTION
     RETURNS:
@@ -311,14 +311,14 @@ def pairplot_train(dataframe, show_now=True):
 
 ### heatmap ###################################################################
 @timeifdebug
-def heatmap_train(dataframe, show_now=True):
+def heatmap_train(dataframe, is_cor=False, show_now=True, annot=True, cmap=plt.cm.RdBu_r, **kwargs):
     '''
     FUNCTION
     RETURNS:
     '''
-    plt.figure(figsize=(7,5))
-    cor = dataframe.corr()
-    plot = sns.heatmap(cor, annot=True, cmap=plt.cm.RdBu_r)
+    plt.figure(figsize=(13,12))
+    cor = dataframe if is_cor else dataframe.corr()
+    plot = sns.heatmap(cor, annot=annot, cmap=cmap)
     if show_now:
         plt.show()
     else:
@@ -378,7 +378,9 @@ def scale_dfo(dfo, scaler_fn=standard_scaler, splain=local_settings.splain, **kw
     '''
 
     dfo.scaler_fn = scaler_fn
-    if scaler_fn is not None:
+    if scaler_fn is None:
+        dfo.scaler = None
+    else:
         dfo.scaler, dfo.train_scaled, dfo.test_scaled = scaler_fn(train=dfo.train, test=dfo.test)
         dfo.train_scaled['dummy_val']=1
         dfo.test_scaled['dummy_val']=1

@@ -1,3 +1,9 @@
+
+[Google Sheets Presentation](https://docs.google.com/presentation/d/1dAYTrJyR1pZR4xF7P9afse3ZU7oCWII4MullRLEKYV8/edit?usp=sharing)
+
+
+
+
 # Classification Project
 
 **Why are our customers churning?**

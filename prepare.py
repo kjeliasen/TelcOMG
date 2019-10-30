@@ -78,10 +78,9 @@ def retype_cols(df, cols, to_dtype, **kwargs):
     
     Function first checks to ensure columns are in dataframe.
     '''
-    for col in [xcol for xcol in cols if xcol in df.columns]:
+    for col in (xcol for xcol in cols if xcol in df.columns):
         df[col] = df[col].astype(to_dtype)
     return df
-
 
 @timeifdebug
 def remove_cols(df, cols, **kwargs):
@@ -204,7 +203,7 @@ def prep_telco_churn_data(splain=local_settings.splain, **kwargs):
     
     '''
     df = get_telco_data(splain=splain)
-    df.set_index('customer_id')
+    df = df.set_index('customer_id')
     category_cols=[
         'partner_deps_id',
         'partner_deps',
@@ -218,13 +217,19 @@ def prep_telco_churn_data(splain=local_settings.splain, **kwargs):
         'phone_service_type',
         'phone_service_id'
     ]
-    retype_cols(dataframe=df, columns=category_cols, to_dtype='category')
+    retype_cols(df=df, cols=category_cols, to_dtype='category')
     boolean_cols  = [
         'is_male',
+        'is_female',
         'senior_citizen',
         'partner',
         'dependents',
         'family',
+        'thru_first_month',
+        'thru_first_quarter',
+        'thru_first_half',
+        'thru_first_year',
+        'thru_first_term',
         'phone_service',
         'multiple_lines',
         'internet_service',
@@ -238,21 +243,25 @@ def prep_telco_churn_data(splain=local_settings.splain, **kwargs):
         'streaming_tv',
         'streaming_movies',
         'streaming_services',
+        'streaming_dsl',
+        'streaming_fiber',
         'on_contract',
         'paperless_billing',
+        'manual_mtm',
         'auto_pay'
     ]
-    retype_cols(dataframe=df, columns=boolean_cols, to_dtype='bool')
-    
-    df_dtypes = pd.DataFrame(df.dtypes).rename(columns={0:'dtype'}).reset_index()
-    dfo = prep.set_dfo(dfo_df=df, y_column='churn', splain=True)
-    #df.drop(columns=['deck', 'embarked','passenger_id'], inplace=True)
-    #df = simpute(df=df, column='embark_town', splain=splain)
-    #df, encoder = encode_col(df=df, col='embark_town')
-    #scaler = MinMaxScaler()
-    #scaler.fit(df[['age','fare']])
-    #df[['age','fare']] = scaler.transform(df[['age','fare']])
-    return df, #encoder, scaler
+    retype_cols(df=df, cols=boolean_cols, to_dtype='bool')
+    string_cols = [
+        'partner_deps',
+        'gender',
+        'internet_service_type',
+        'contract_type',
+        'payment_type',
+        'phone_service_type',
+    ]   
+    #df_dtypes = pd.DataFrame(df.dtypes).rename(columns={0:'dtype'}).reset_index()
+    dfo = set_dfo(dfo_df=df, y_column='churn', splain=True, string_cols=string_cols)
+    return dfo #encoder, scaler
 
 
 ###############################################################################
